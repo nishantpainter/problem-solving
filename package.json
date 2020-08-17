@@ -1,0 +1,28 @@
+{
+  "name": "problem-solving",
+  "version": "1.0.0",
+  "description": "Problem Solution Archive",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishantpainter/problem-solving.git"
+  },
+  "keywords": [
+    "Problem",
+    "Solving",
+    "Computer",
+    "Programming"
+  ],
+  "author": "Nishant Painter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nishantpainter/problem-solving/issues"
+  },
+  "homepage": "https://github.com/nishantpainter/problem-solving#readme",
+  "devDependencies": {
+    "jest": "^26.4.0"
+  }
+}
