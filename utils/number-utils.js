@@ -18,9 +18,15 @@ function getUnique(list) {
   return list.filter((v, i, a) => a.indexOf(v) === i);
 }
 
+function getEvenValueSum(list) {
+  if (!(list && Array.isArray(list))) return;
+  return list.reduce((sum, v) => (v % 2 === 0 ? sum + v : sum), 0);
+}
+
 module.exports = {
   getIntegers,
   getMultiplesOf,
   getSumOf,
   getUnique,
+  getEvenValueSum,
 };

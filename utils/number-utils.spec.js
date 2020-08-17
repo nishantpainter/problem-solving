@@ -73,4 +73,21 @@ describe("NumberUtils", () => {
       expect(getUnique(3)).toBeUndefined();
     });
   });
+
+  describe("getEvenValueSum", () => {
+    const { getEvenValueSum } = NumberUtils;
+
+    it("should be defined", () => {
+      expect(getEvenValueSum).toBeDefined();
+    });
+
+    it("should return sum of even values in list", () => {
+      expect(getEvenValueSum([1, 2, 3, 4, 2, 1])).toBe(8);
+    });
+
+    it("should return undefined on empty or non array argument", () => {
+      expect(getEvenValueSum()).toBeUndefined();
+      expect(getEvenValueSum(3)).toBeUndefined();
+    });
+  });
 });
