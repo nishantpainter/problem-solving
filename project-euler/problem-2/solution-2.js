@@ -10,7 +10,7 @@ function getFibonnaciSeriesUpto(number) {
     return [1, 2];
   }
 
-  let series = [1, 2];
+  const series = [1, 2];
 
   for (let i = 3; ; i++) {
     const nextNumber = series[i - 3] + series[i - 2];
