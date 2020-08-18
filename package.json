@@ -1,7 +1,7 @@
 {
   "name": "problem-solving",
   "version": "1.0.0",
-  "description": "Problem Solution Archive",
+  "description": "Problem Solutions",
   "main": "index.js",
   "scripts": {
     "test": "jest"
