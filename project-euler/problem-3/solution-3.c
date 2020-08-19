@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 int main()
@@ -6,7 +5,7 @@ int main()
     long num = 600851475143;
     int max = 2;
     int i;
-    while (num != 1)
+    while (max < num)
     {
         for (i = 2;; i++)
         {
