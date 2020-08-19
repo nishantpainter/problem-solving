@@ -2,9 +2,9 @@
 
 int main()
 {
-    long num = 600851475143;
-    int max = 2;
-    int i;
+    register long num = 600851475143;
+    register int max = 2;
+    register int i;
     while (max < num)
     {
         for (i = 2;; i++)
