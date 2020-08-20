@@ -10,6 +10,6 @@ int main()
             sum += i;
         }
     }
-    printf("%d", sum);
+    printf("%d", sum); //233168
     return 0;
 }
