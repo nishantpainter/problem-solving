@@ -443,141 +443,151 @@ var GRID = [
 
 var count = GRID.length;
 
-var products = [];
+var maxProduct = 1;
 
-for (var i = 0; i < count; i++) {
-  for (var j = 0; j < count; j++) {
-    // Right
-    if (
-      GRID[j + 1] &&
-      GRID[j + 2] &&
-      GRID[j + 3] &&
-      GRID[i][j + 1] &&
-      GRID[i][j + 2] &&
-      GRID[i][j + 3]
-    ) {
-      products.push(
-        GRID[i][j] * GRID[i][j + 1] * GRID[i][j + 2] * GRID[i][j + 3]
-      );
-    }
-    // Left
-    if (
-      GRID[j - 1] &&
-      GRID[j - 2] &&
-      GRID[j - 3] &&
-      GRID[i][j - 1] &&
-      GRID[i][j - 2] &&
-      GRID[i][j - 3]
-    ) {
-      products.push(
-        GRID[i][j] * GRID[i][j - 1] * GRID[i][j - 2] * GRID[i][j - 3]
-      );
-    }
-    // Up
-    if (
-      GRID[i - 1] &&
-      GRID[i - 2] &&
-      GRID[i - 3] &&
-      GRID[i - 1][j] &&
-      GRID[i - 2][j] &&
-      GRID[i - 3][j]
-    ) {
-      products.push(
-        GRID[i][j] * GRID[i - 1][j] * GRID[i - 2][j] * GRID[i - 3][j]
-      );
-    }
-    // Down
-    if (
-      GRID[i + 1] &&
-      GRID[i + 2] &&
-      GRID[i + 3] &&
-      GRID[i + 1][j] &&
-      GRID[i + 2][j] &&
-      GRID[i + 3][j]
-    ) {
-      products.push(
-        GRID[i][j] * GRID[i + 1][j] * GRID[i + 2][j] * GRID[i + 3][j]
-      );
-    }
-    // Diagonal Up Left
-    if (
-      GRID[i - 1] &&
-      GRID[j - 1] &&
-      GRID[i - 2] &&
-      GRID[j - 2] &&
-      GRID[i - 3] &&
-      GRID[j - 3] &&
-      GRID[i - 1][j - 1] &&
-      GRID[i - 2][j - 2] &&
-      GRID[i - 3][j - 3]
-    ) {
-      products.push(
-        GRID[i][j] *
-          GRID[i - 1][j - 1] *
-          GRID[i - 2][j - 2] *
-          GRID[i - 3][j - 3]
-      );
-    }
-
-    // Diagonal Up Right
-    if (
-      GRID[i - 1] &&
-      GRID[j + 1] &&
-      GRID[i - 2] &&
-      GRID[j + 2] &&
-      GRID[i - 3] &&
-      GRID[j + 3] &&
-      GRID[i - 1][j + 1] &&
-      GRID[i - 2][j + 2] &&
-      GRID[i - 3][j + 3]
-    ) {
-      products.push(
-        GRID[i][j] *
-          GRID[i - 1][j + 1] *
-          GRID[i - 2][j + 2] *
-          GRID[i - 3][j + 3]
-      );
-    }
-    // Diagonal Down left
-    if (
-      GRID[i + 1] &&
-      GRID[j - 1] &&
-      GRID[i + 2] &&
-      GRID[j - 2] &&
-      GRID[i + 3] &&
-      GRID[j - 3] &&
-      GRID[i + 1][j - 1] &&
-      GRID[i + 2][j - 2] &&
-      GRID[i + 3][j - 3]
-    ) {
-      products.push(
-        GRID[i][j] *
-          GRID[i + 1][j - 1] *
-          GRID[i + 2][j - 2] *
-          GRID[i + 3][j - 3]
-      );
-    }
-
-    // Diagonal Down Right
-    if (
-      GRID[i + 1] &&
-      GRID[j + 1] &&
-      GRID[i + 2] &&
-      GRID[j + 2] &&
-      GRID[i + 3] &&
-      GRID[j + 3] &&
-      GRID[i + 1][j + 1] &&
-      GRID[i + 2][j + 2] &&
-      GRID[i + 3][j + 3]
-    ) {
-      products.push(
-        GRID[i][j] *
-          GRID[i + 1][j + 1] *
-          GRID[i + 2][j + 2] *
-          GRID[i + 3][j + 3]
-      );
-    }
+function manageMaxProduct(product) {
+  if (product > maxProduct) {
+    maxProduct = product;
   }
 }
 
-console.log(Math.max(...products)); //70600674
+function upProduct(i, j, grid) {
+  if (
+    grid[i - 1] &&
+    grid[i - 2] &&
+    grid[i - 3] &&
+    grid[i - 1][j] &&
+    grid[i - 2][j] &&
+    grid[i - 3][j]
+  ) {
+    return grid[i][j] * grid[i - 1][j] * grid[i - 2][j] * grid[i - 3][j];
+  }
+}
+
+function downProduct(i, j, grid) {
+  if (
+    grid[i + 1] &&
+    grid[i + 2] &&
+    grid[i + 3] &&
+    grid[i + 1][j] &&
+    grid[i + 2][j] &&
+    grid[i + 3][j]
+  ) {
+    return grid[i][j] * grid[i + 1][j] * grid[i + 2][j] * grid[i + 3][j];
+  }
+}
+
+function rightProduct(i, j, grid) {
+  if (
+    grid[j + 1] &&
+    grid[j + 2] &&
+    grid[j + 3] &&
+    grid[i][j + 1] &&
+    grid[i][j + 2] &&
+    grid[i][j + 3]
+  ) {
+    return grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3];
+  }
+}
+
+function leftProduct(i, j, grid) {
+  if (
+    grid[j - 1] &&
+    grid[j - 2] &&
+    grid[j - 3] &&
+    grid[i][j - 1] &&
+    grid[i][j - 2] &&
+    grid[i][j - 3]
+  ) {
+    return grid[i][j] * grid[i][j - 1] * grid[i][j - 2] * grid[i][j - 3];
+  }
+}
+
+function diagonalUpLeftProduct(i, j, grid) {
+  if (
+    grid[i - 1] &&
+    grid[j - 1] &&
+    grid[i - 2] &&
+    grid[j - 2] &&
+    grid[i - 3] &&
+    grid[j - 3] &&
+    grid[i - 1][j - 1] &&
+    grid[i - 2][j - 2] &&
+    grid[i - 3][j - 3]
+  ) {
+    return (
+      grid[i][j] * grid[i - 1][j - 1] * grid[i - 2][j - 2] * grid[i - 3][j - 3]
+    );
+  }
+}
+
+function diagonalUpRightProduct(i, j, grid) {
+  if (
+    grid[i - 1] &&
+    grid[j + 1] &&
+    grid[i - 2] &&
+    grid[j + 2] &&
+    grid[i - 3] &&
+    grid[j + 3] &&
+    grid[i - 1][j + 1] &&
+    grid[i - 2][j + 2] &&
+    grid[i - 3][j + 3]
+  ) {
+    return (
+      GRID[i][j] * GRID[i - 1][j + 1] * GRID[i - 2][j + 2] * GRID[i - 3][j + 3]
+    );
+  }
+}
+
+function diagonalDownLeftProduct(i, j, grid) {
+  if (
+    grid[i + 1] &&
+    grid[j - 1] &&
+    grid[i + 2] &&
+    grid[j - 2] &&
+    grid[i + 3] &&
+    grid[j - 3] &&
+    grid[i + 1][j - 1] &&
+    grid[i + 2][j - 2] &&
+    grid[i + 3][j - 3]
+  ) {
+    return (
+      grid[i][j] * grid[i + 1][j - 1] * grid[i + 2][j - 2] * grid[i + 3][j - 3]
+    );
+  }
+}
+
+function diagonalDownRightProduct(i, j, grid) {
+  if (
+    grid[i + 1] &&
+    grid[j + 1] &&
+    grid[i + 2] &&
+    grid[j + 2] &&
+    grid[i + 3] &&
+    grid[j + 3] &&
+    grid[i + 1][j + 1] &&
+    grid[i + 2][j + 2] &&
+    grid[i + 3][j + 3]
+  ) {
+    return (
+      grid[i][j] * grid[i + 1][j + 1] * grid[i + 2][j + 2] * grid[i + 3][j + 3]
+    );
+  }
+}
+
+var n = 4;
+
+for (var i = 0; i < count; i++) {
+  for (var j = 0; j < count; j++) {
+    manageMaxProduct(rightProduct(i, j, GRID));
+    manageMaxProduct(leftProduct(i, j, GRID));
+    manageMaxProduct(upProduct(i, j, GRID));
+    manageMaxProduct(downProduct(i, j, GRID));
+    manageMaxProduct(diagonalUpLeftProduct(i, j, GRID));
+    manageMaxProduct(diagonalUpRightProduct(i, j, GRID));
+    manageMaxProduct(diagonalDownLeftProduct(i, j, GRID));
+    manageMaxProduct(diagonalDownRightProduct(i, j, GRID));
+  }
+}
+
+console.log(maxProduct); //70600674
